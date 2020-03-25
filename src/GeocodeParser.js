@@ -102,6 +102,10 @@ class GeocodeParser {
     return this.getComponent('locality', useShort) || this.getComponent('sublocality', useShort);
   }
 
+  getStreetAddress2(useShort = false) {
+    return this.getComponent('sublocality', useShort) || this.getComponent('sublocality_level_1', useShort);
+  }
+
   getCountry(useShort = false) {
     return this.getComponent('country', useShort);
   }
@@ -205,11 +209,16 @@ class GeocodeParser {
   parse() {
     return {
       formatted: this.parsedRoute && this.parsedRoute.streetName && this.parsedRoute.streetName.replacedName ? this.sanitizeStreetName(this.data.formatted_address) : this.data.formatted_address,
-      address: this.getComponent('street_address'),
-      city: this.getComponent('locality') || this.getComponent('sublocality'),
-      geometry: this.data.geometry,
-      state: this.getComponent('administrative_area_level_1'),
-      zip: this.getComponent('postal_code'),
+      // address: this.getComponent('street_address'),
+      streetNumber: this.getStreetNumber(),
+      streetName: this.getStreetName(),
+      address: this.getStreetAddress(),
+      address2: this.getStreetAddress2(),
+      city: this.getCity(),
+      zipcode: this.getZip(),
+      state: this.getState(),
+      country: this.getCountry(),
+      geometry: this.getGeo()
     }
   }
 }
