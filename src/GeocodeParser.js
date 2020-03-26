@@ -103,7 +103,7 @@ class GeocodeParser {
   }
 
   getPremise(useShort = false) {
-    return this.getComponent('premise', useShort) || this.getComponent('name', useShort);
+    return this.getComponent('premise', useShort) || this.getComponent('point_of_interest', useShort) || this.getComponent('name', useShort);
   }
 
   getStreetAddress2(useShort = false) {
