@@ -6,7 +6,6 @@
   "scripts": {
     "test": "jest --coverage",
     "test:dev": "jest --watchAll",
-    "prepare": "babel ./src --out-dir ./dist"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
